@@ -1,0 +1,48 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../core/constant/appcolor.dart';
+
+class RememberForgotRow extends StatelessWidget {
+  final bool rememberPassword;
+  final ValueChanged<bool?> onRememberChanged;
+  final VoidCallback? onForgotTap;
+
+  const RememberForgotRow({
+    super.key,
+    required this.rememberPassword,
+    required this.onRememberChanged,
+    this.onForgotTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Checkbox(
+              value: rememberPassword,
+              onChanged: onRememberChanged,
+              activeColor: AppColor.blue,
+            ),
+             Text(
+              'Remember me'.tr,
+              style: TextStyle(color: Colors.black45),
+            ),
+          ],
+        ),
+        GestureDetector(
+          onTap: onForgotTap,
+          child: Text(
+            'Forget password?'.tr,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: AppColor.blue,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
