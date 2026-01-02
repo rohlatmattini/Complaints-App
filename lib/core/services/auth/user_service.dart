@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-import '../../../data/model/Auth/user.dart';
+import '../../../data/models/Auth/user.dart';
 
 class UserService {
   final storage = const FlutterSecureStorage();

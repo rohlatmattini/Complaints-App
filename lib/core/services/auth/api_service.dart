@@ -1,18 +1,16 @@
 import 'dart:convert';
-
-import 'package:complaints/core/constant/app_routes.dart';
-import 'package:complaints/view/screen/auth/email_verification.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../controller/localization/locale_controller.dart';
-import '../../../data/model/Auth/login.dart';
-import '../../../data/model/Auth/signup.dart';
 import 'package:http/http.dart'as http;
 
-import '../../constant/app_links.dart';
+import '../../../data/models/Auth/login.dart';
+import '../../../data/models/Auth/signup.dart';
+import '../../constants/app_links.dart';
+import '../../localization/locale_controller.dart';
+
 
 class ApiService {
   final MyLocaleController langController = Get.find();

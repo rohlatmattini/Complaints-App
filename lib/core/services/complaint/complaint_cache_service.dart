@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
-import '../../../controller/localization/locale_controller.dart';
-import '../../../data/model/complaint/complaint_meta_model.dart';
+import '../../../data/models/complaint/complaint_meta_model.dart';
+import '../../localization/locale_controller.dart';
 
 class ComplaintCacheService  {
   static const String _cacheKey = 'complaint_meta_cache_simple';

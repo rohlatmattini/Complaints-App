@@ -1,4 +1,3 @@
-import 'package:complaints/view/screen/auth/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,12 +5,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'controller/localization/locale_controller.dart';
-import 'controller/profile/user_controller.dart';
-import 'controller/theme/theme_controller.dart';
-import 'core/app_initializer/app_initializer.dart';
+import 'app/app_initializer/app_initializer.dart';
+import 'app/routes/routes_pages.dart';
+import 'app/theme/theme_controller.dart';
+import 'core/localization/locale_controller.dart';
 import 'core/localization/my_locale.dart';
-import 'core/routes/routes_pages.dart';
+import 'modules/auth/view/signin.dart';
 
 SharedPreferences? sharedpref;
 

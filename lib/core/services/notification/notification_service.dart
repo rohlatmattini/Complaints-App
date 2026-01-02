@@ -139,8 +139,9 @@ import 'package:http/http.dart' as http;
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:complaints/core/constant/app_links.dart';
-import 'package:complaints/data/model/notification/notification_model.dart';
+
+import '../../../data/models/notification/notification_model.dart';
+import '../../constants/app_links.dart';
 
 class NotificationService extends GetxService {
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
@@ -233,9 +234,8 @@ class NotificationService extends GetxService {
       }
 
       print('🔄 إرسال FCM token إلى الخادم...');
-
       final response = await http.post(
-        Uri.parse(AppLinks.deviceTokens),
+        Uri.parse('${AppLinks.baseUrl}/device-tokens'),
         headers: {
           'Accept': 'application/json',
           'Accept-Language': 'ar',
@@ -290,7 +290,7 @@ class NotificationService extends GetxService {
       if (userToken == null) return [];
 
       // بناء الرابط مع query parameters
-      Uri uri = Uri.parse(AppLinks.notifications).replace(
+      Uri uri = Uri.parse('${AppLinks.baseUrl}/notifications').replace(
         queryParameters: {
           'page': page.toString(),
           'per_page': perPage.toString(),
@@ -344,9 +344,8 @@ class NotificationService extends GetxService {
         unreadCount.value = 0;
         return 0;
       }
-
       final response = await http.get(
-        Uri.parse(AppLinks.notificationsUnreadCount),
+        Uri.parse('${AppLinks.baseUrl}/notifications/unread-count'),
         headers: {
           'Accept': 'application/json',
           'Authorization': 'Bearer $userToken',
@@ -375,7 +374,7 @@ class NotificationService extends GetxService {
       if (userToken == null) return false;
 
       final response = await http.post(
-        Uri.parse(AppLinks.notificationsReadAll),
+        Uri.parse('${AppLinks.baseUrl}/notifications/read-all'),
         headers: {
           'Accept': 'application/json',
           'Accept-Language': 'ar',
@@ -448,7 +447,7 @@ class NotificationService extends GetxService {
       if (userToken == null) return false;
 
       final response = await http.post(
-        Uri.parse('${AppLinks.notifications}/$notificationId/read'),
+        Uri.parse('${AppLinks.baseUrl}/notifications/$notificationId/read'),
         headers: {
           'Accept': 'application/json',
           'Accept-Language': 'ar',

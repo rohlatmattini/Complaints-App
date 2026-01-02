@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import '../../../controller/localization/locale_controller.dart';
-import '../../../data/model/complaint/complaint_meta_model.dart';
-import '../../constant/app_links.dart';
+import '../../../data/models/complaint/complaint_meta_model.dart';
+import '../../constants/app_links.dart';
+import '../../localization/locale_controller.dart';
 import 'complaint_cache_service.dart';
 
 class ComplaintService {
