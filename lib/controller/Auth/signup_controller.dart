@@ -8,6 +8,7 @@ import '../../data/model/Auth/signup.dart';
 import '../../core/constant/app_routes.dart';
 import '../../data/model/Auth/user.dart';
 import '../../view/screen/auth/email_verification.dart';
+import '../profile/user_controller.dart';
 
 class SignUpController extends GetxController {
   // Form keys
@@ -133,6 +134,8 @@ class SignUpController extends GetxController {
         );
 
         await UserService().saveUser(user);
+        if (Get.isRegistered<UserController>()) {
+          Get.find<UserController>().loadUser(); }
         print("Token saved: $token");
 
         Get.to(() => EmailVerificationScreen());
