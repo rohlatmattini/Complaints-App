@@ -61,7 +61,7 @@ class AppColor {
       return isDark ? darkOrange : orange;
     }
 
-    return isDark ? darkGrey : grey;
+    return isDark ? AppColor.darkBlueGrey : AppColor.blue;
   }
 
   static Color getPriorityColor(String priority, {bool isDark = false}) {

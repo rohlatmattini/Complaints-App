@@ -53,6 +53,7 @@ class UserComplaintsScreen extends StatelessWidget {
           // Complaints List
           Expanded(
             child: RefreshIndicator(
+              color: AppColor.blue,
               onRefresh: () => controller.refreshComplaints(),
               child: Obx(() => _buildComplaintsList(isDark)),
             ),

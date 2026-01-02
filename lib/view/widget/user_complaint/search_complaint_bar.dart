@@ -1,6 +1,7 @@
 // lib/view/widget/complaint/search_complaint_bar.dart
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../core/constant/appcolor.dart';
 
@@ -19,17 +20,30 @@ class SearchComplaintBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: TextField(
+        cursorColor: AppColor.blue,
         decoration: InputDecoration(
           hintText: 'search_complaint'.tr,
           prefixIcon: Icon(Icons.search, color: AppColor.subtitleColor),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: AppColor.getBorderColor(isDark: isDark)),
+            borderSide: BorderSide(color: AppColor.getBorderColor(isDark: isDark)
+
+            ),
+
           ),
+
           filled: true,
           fillColor: AppColor.getSearchBarColor(isDark: isDark),
           hintStyle: TextStyle(color: AppColor.subtitleColor),
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+
+    focusedBorder: OutlineInputBorder(
+    borderRadius: BorderRadius.circular(10.r),
+    borderSide: BorderSide(
+    color: AppColor.blue,
+    width: 1.8,
+    ),
+    ),
         ),
         style: TextStyle(
           color: isDark ? AppColor.darkText : AppColor.textColor,

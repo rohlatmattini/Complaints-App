@@ -44,7 +44,7 @@ class ComplaintSubtitle extends StatelessWidget {
                 complaint.status,
                 style: TextStyle(
                   color: statusColor,
-                  fontSize: 12,
+                  fontSize: 10,
                   fontWeight: FontWeight.bold,
                 ),
               ),

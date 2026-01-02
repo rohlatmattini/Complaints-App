@@ -22,6 +22,7 @@ class OtpInput extends StatelessWidget {
       width: 45.w,
       height: 60.h,
       child: TextField(
+        cursorColor: AppColor.blue,
         controller: controller,
         autofocus: autoFocus,
         keyboardType: TextInputType.number,

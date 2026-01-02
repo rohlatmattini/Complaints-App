@@ -164,6 +164,8 @@ class MyLocale implements Translations {
       'resolved':'تم الحل',
       'closed':'مغلقة',
       'in progress':'تحت المعالجة',
+      'There are no unread notifications':'لا توجد إشعارات غير مقروءة',
+      'There are no notifications':'لا توجد إشعارات',
 
 
     },
@@ -333,6 +335,8 @@ class MyLocale implements Translations {
       'resolved':'resolved',
       'closed':'closed',
       'in progress':'in progress',
+      'There are no unread notifications': 'There are no unread notifications',
+      'There are no notifications':'There are no notifications',
 
     },
   };

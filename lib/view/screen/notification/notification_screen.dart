@@ -230,7 +230,6 @@ class NotificationsScreen extends StatelessWidget {
               fontWeight: FontWeight.bold),
         )),
         actions: [
-          /// فلتر غير المقروء
           IconButton(
             onPressed: controller.toggleFilter,
             icon: Obx(
@@ -245,7 +244,6 @@ class NotificationsScreen extends StatelessWidget {
             ),
           ),
 
-          /// تعليم الكل كمقروء
           Obx(
                 () => controller.unreadCount.value > 0
                 ? IconButton(
@@ -255,7 +253,6 @@ class NotificationsScreen extends StatelessWidget {
                 : const SizedBox.shrink(),
           ),
 
-          /// تحديث
           IconButton(
             onPressed: controller.refreshNotifications,
             icon: const Icon(Icons.refresh),
@@ -279,8 +276,8 @@ class NotificationsScreen extends StatelessWidget {
                 const SizedBox(height: 16),
                 Text(
                   controller.showUnreadOnly.value
-                      ? 'لا توجد إشعارات غير مقروءة'
-                      : 'لا توجد إشعارات',
+                      ? 'There are no unread notifications'.tr
+                      : 'There are no notifications'.tr,
                   style: const TextStyle(
                     fontSize: 18,
                     color: Colors.grey,
@@ -292,6 +289,7 @@ class NotificationsScreen extends StatelessWidget {
         }
 
         return RefreshIndicator(
+          color: AppColor.blue,
           onRefresh: () async {
             await controller.refreshNotifications();
           },
