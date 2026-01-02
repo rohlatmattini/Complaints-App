@@ -1,4 +1,3 @@
-// lib/view/widget/complaint/user_complaints_screen.dart
 
 import 'package:complaints/core/constant/app_routes.dart';
 import 'package:complaints/view/widget/drawer/main_drawer.dart';

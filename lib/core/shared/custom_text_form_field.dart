@@ -30,6 +30,8 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     return TextFormField(
       controller: controller,
       keyboardType: keyboardType,
@@ -37,27 +39,52 @@ class CustomTextFormField extends StatelessWidget {
       validator: validator,
       onChanged: onChanged,
       cursorColor: AppColor.blue,
+      style: TextStyle(
+        color: isDark ? Colors.white : Colors.black,
+      ),
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,
-        hintStyle: const TextStyle(color: Colors.black26),
-        floatingLabelStyle: TextStyle(color: AppColor.blue),
 
-        prefixIcon:
-        prefixIcon != null ? Icon(prefixIcon, color: AppColor.blue) : null,
+        // ✅ لون الـ label
+        labelStyle: TextStyle(
+          color: isDark ? Colors.white70 : Colors.black54,
+        ),
+
+        // ✅ لون الـ hint
+        hintStyle: TextStyle(
+          color: isDark ? Colors.white54 : Colors.black26,
+        ),
+
+
+        prefixIcon: prefixIcon != null
+            ? Icon(
+          prefixIcon,
+          color: AppColor.blue,
+        )
+            : null,
+
         suffixIcon: suffixIcon != null
             ? IconButton(
           onPressed: onSuffixPressed,
-          icon: Icon(suffixIcon, color: AppColor.blue),
+          icon: Icon(
+            suffixIcon,
+            color: AppColor.blue,
+          ),
         )
             : null,
+
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
-          borderSide: const BorderSide(color: Colors.black12),
+          borderSide: BorderSide(
+            color: isDark ? Colors.white38 : Colors.black12,
+          ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
-          borderSide: const BorderSide(color: Colors.black12),
+          borderSide: BorderSide(
+            color: isDark ? Colors.white38 : Colors.black12,
+          ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
@@ -69,4 +96,5 @@ class CustomTextFormField extends StatelessWidget {
       ),
     );
   }
+
 }

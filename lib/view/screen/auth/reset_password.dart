@@ -15,6 +15,8 @@ class ResetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     return CustomScaffold(
       backgroundImage: AppImageAsset.forgetImage,
       child: Column(
@@ -25,7 +27,7 @@ class ResetPasswordScreen extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.fromLTRB(25.w, 10.h, 25.w, 20.h),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: isDark ? AppColor.darkBlueGrey : Colors.white,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(40.r),
                   topRight: Radius.circular(40.r),
@@ -56,7 +58,12 @@ class ResetPasswordScreen extends StatelessWidget {
                       Text(
                         "Enter the 6-digit code sent to your email".tr,
                         style:
-                        TextStyle(fontSize: 16.sp, color: Colors.grey[600]),
+                        TextStyle(
+                          fontSize: 16.sp,
+                          color: isDark
+                              ? AppColor.white.withOpacity(0.7)
+                              : Colors.grey[600],
+                        ),
                         textAlign: TextAlign.center,
                       ),
 

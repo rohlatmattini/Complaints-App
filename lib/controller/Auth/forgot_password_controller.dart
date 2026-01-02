@@ -72,7 +72,7 @@ class ForgotPasswordController extends GetxController {
 
     if (res != null && !res.containsKey("errors")) {
       Get.snackbar("Success".tr, "Password updated successfully".tr);
-      Get.toNamed(AppRoute.home);
+      Get.toNamed(AppRoute.userComplaints);
     } else {
       Get.snackbar("Error", res?["message"] ?? "Wrong code");
       clearOtpFields();

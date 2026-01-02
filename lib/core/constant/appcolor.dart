@@ -34,7 +34,7 @@ class AppColor {
   static const Color darkSubtitle = Color(0xFFB5B5B5);
   // static const Color darkGrey = Color(0xFF3A3A50);
   static const Color darkMediumGrey = Color(0xFF4A4A65);
-  static const Color darkBlueGrey = Color(0xFF505974);
+  static const Color darkBlueGrey = Color(0xFF3C425D);
   static const Color darkRed = Color(0xFFFF5C5C);
   static const Color darkGreen = Color(0xFF68D391);
   static const Color darkOrange = Color(0xFFF6AD55);

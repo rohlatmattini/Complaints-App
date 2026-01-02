@@ -16,20 +16,22 @@ class RememberForgotRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
-            Checkbox(
-              value: rememberPassword,
-              onChanged: onRememberChanged,
-              activeColor: AppColor.blue,
-            ),
-             Text(
-              'Remember me'.tr,
-              style: TextStyle(color: Colors.black45),
-            ),
+            // Checkbox(
+            //   value: rememberPassword,
+            //   onChanged: onRememberChanged,
+            //   activeColor: AppColor.blue,
+            // ),
+            //  Text(
+            //   'Remember me'.tr,
+            //   style: TextStyle(color: Colors.black45),
+            // ),
           ],
         ),
         GestureDetector(
@@ -38,7 +40,7 @@ class RememberForgotRow extends StatelessWidget {
             'Forget password?'.tr,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: AppColor.blue,
+              color: isDark ? Colors.white54 : AppColor.blue,
             ),
           ),
         ),

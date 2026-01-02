@@ -16,38 +16,41 @@ class ComplaintDetailsHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      width:MediaQuery.of(context).size.width,
-
-      decoration: BoxDecoration(
-        color: AppColor.blue.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColor.blue.withOpacity(0.3)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 8),
-          Text(
-            complaint.title,
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: isDark ? AppColor.darkText : AppColor.textColor,
-            ),
+    return  SizedBox(
+      width: MediaQuery.of(context).size.width, // عرض الشاشة بالكامل
+      child: Card(
+        elevation: 2,
+        color: AppColor.getCardColor(isDark: isDark),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                complaint.title,
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: isDark ? AppColor.darkText : AppColor.textColor,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                complaint.description,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: isDark ? AppColor.darkSubtitle : AppColor.subtitleColor,
+                  height: 1.5,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 8),
-          Text(
-            complaint.description,
-            style: TextStyle(
-              fontSize: 16,
-              color: isDark ? AppColor.darkSubtitle : AppColor.subtitleColor,
-              height: 1.5,
-            ),
-          ),
-        ],
+        ),
       ),
     );
+
   }
 }

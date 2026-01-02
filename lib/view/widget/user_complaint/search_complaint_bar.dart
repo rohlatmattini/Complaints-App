@@ -33,7 +33,8 @@ class SearchComplaintBar extends StatelessWidget {
           ),
 
           filled: true,
-          fillColor: AppColor.getSearchBarColor(isDark: isDark),
+          fillColor:  isDark ? AppColor.getCardColor(isDark: true)  // <-- هنا
+            : Colors.grey[200],
           hintStyle: TextStyle(color: AppColor.subtitleColor),
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
 
