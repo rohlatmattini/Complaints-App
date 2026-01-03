@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -14,7 +15,7 @@ import '../../localization/locale_controller.dart';
 
 class ApiService {
   final MyLocaleController langController = Get.find();
-
+ final storage= FlutterSecureStorage();
   Future<Map<String, dynamic>?> register(SignUpModel model) async {
     final uri = Uri.parse('${AppLinks.baseUrl}/register');
 
@@ -209,6 +210,8 @@ class ApiService {
       print('Logout Response: $responseString');
 
       if (response.statusCode == 200) {
+        await storage.delete(key: 'token');
+        await storage.write(key: 'isLoggedIn', value: 'false');
         return jsonDecode(responseString);
       } else {
         return {'success': false, 'message': 'Logout failed'};

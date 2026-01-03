@@ -23,15 +23,15 @@ class RememberForgotRow extends StatelessWidget {
       children: [
         Row(
           children: [
-            // Checkbox(
-            //   value: rememberPassword,
-            //   onChanged: onRememberChanged,
-            //   activeColor: AppColor.blue,
-            // ),
-            //  Text(
-            //   'Remember me'.tr,
-            //   style: TextStyle(color: Colors.black45),
-            // ),
+            Checkbox(
+              value: rememberPassword,
+              onChanged: onRememberChanged,
+              activeColor: AppColor.blue,
+            ),
+             Text(
+              'Remember me'.tr,
+              style: TextStyle(color: Colors.black45),
+            ),
           ],
         ),
         GestureDetector(

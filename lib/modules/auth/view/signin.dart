@@ -88,20 +88,62 @@ class SignInScreen extends StatelessWidget {
                       )),
                       SizedBox(height: 25.h),
 
+                      Obx(() {
+                        if (controller.secondsRemaining.value > 0) {
+                          return Padding(
+                            padding: EdgeInsets.only(bottom: 15.h),
+                            child: Container(
+                              padding: EdgeInsets.all(10.w),
+                              decoration: BoxDecoration(
+                                color: Colors.red.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.timer_outlined, color: Colors.red, size: 20.sp),
+                                  SizedBox(width: 10.w),
+                                  Text(
+                                    "${'Try again in'.tr} ${controller.secondsRemaining.value ~/ 60}:${(controller.secondsRemaining.value % 60).toString().padLeft(2, '0')} ${'min'.tr}",                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14.sp,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      }),
                       //  Sign in Button
                       SizedBox(
                         width: double.infinity,
-                        child: ElevatedButton(
+                        child: Obx(() => ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColor.blue,
+                            backgroundColor: controller.secondsRemaining.value > 0
+                                ? Colors.grey
+                                : AppColor.blue,
                             padding: EdgeInsets.symmetric(vertical: 15.h),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                            ),
                           ),
-                          onPressed: controller.submitForm,
-                          child: Text(
+                          onPressed: (controller.secondsRemaining.value > 0 || controller.isLoading.value)
+                              ? null
+                              : controller.submitForm,
+                          child: controller.isLoading.value
+                              ? SizedBox(
+                            height: 20.h,
+                            width: 20.h,
+                            child: const CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
+                          )
+                              : Text(
                             'Sign in'.tr,
                             style: TextStyle(fontSize: 18.sp, color: Colors.white),
                           ),
-                        ),
+                        )),
                       ),
                       SizedBox(height: 25.h),
                       Row(

@@ -30,7 +30,7 @@ class MyLocale implements Translations {
       "Explain the problem in detail": "اشرح المشكلة بالتفصيل",
       "Location": "الموقع",
       "Select location from map or enter manually":
-          "اختر الموقع من الخريطة أو أدخله يدويًا",
+      "اختر الموقع من الخريطة أو أدخله يدويًا",
       "Select location on map": "اختيار الموقع على الخريطة",
       "Confirm": "تأكيد",
       "Cancel": "إلغاء",
@@ -63,13 +63,13 @@ class MyLocale implements Translations {
       "Sign in": "تسجيل الدخول",
       "if you don't have an account ?": "إذا لم يكن لديك حساب؟",
       "Choose location from map or enter manually":
-          "اختر الموقع من الخريطة أو أدخله يدوياً",
+      "اختر الموقع من الخريطة أو أدخله يدوياً",
       "success": "نجح",
       "Error": "خطأ",
       "Password updated successfully": "تم تحديث كلمة المرور بنجاح",
       "Something went wrong": "حدث خطأ ما",
       "Please wait a moment before trying again.":
-          "يرجى الانتظار لحظة قبل المحاولة مرة أخرى.",
+      "يرجى الانتظار لحظة قبل المحاولة مرة أخرى.",
       "Wait": "انتظر",
       "Please enter your email": "يرجى إدخال بريدك الإلكتروني",
       "Invalid email format": "تنسيق البريد الإلكتروني غير صالح",
@@ -77,12 +77,12 @@ class MyLocale implements Translations {
       "Invalid email": "بريد إلكتروني غير صالح",
       "Minimum 8 chars": "8 أحرف على الأقل",
       "Password must be at least 6 characters":
-          "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+      "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
       "Login successful": "تم تسجيل الدخول بنجاح",
       "Your email is not verified. Please verify first.":
-          "بريدك الإلكتروني غير مفعل. يرجى التفعيل أولاً.",
+      "بريدك الإلكتروني غير مفعل. يرجى التفعيل أولاً.",
       "Your account was temporarily locked due to repeated failed attempts.":
-          "تم قفل حسابك مؤقتًا بسبب محاولات فاشلة متكررة.",
+      "تم قفل حسابك مؤقتًا بسبب محاولات فاشلة متكررة.",
       "Security Alert": "تنبيه أمني",
       "Login Failed": "فشل تسجيل الدخول",
       "Please enter your phone number": "يرجى إدخال رقم هاتفك",
@@ -91,21 +91,21 @@ class MyLocale implements Translations {
       "Enter verification code": "أدخل رمز التحقق",
       "Code must be 6 digits": "يجب أن يكون الرمز 6 أرقام",
       "A verification code has been sent to your email.":
-          "تم إرسال رمز تحقق إلى بريدك الإلكتروني.",
+      "تم إرسال رمز تحقق إلى بريدك الإلكتروني.",
       "Almost Done": "كدت الانتهاء",
       "Please enter the complete 6-digit code":
-          "يرجى إدخال الرمز المكون من 6 أرقام بالكامل",
+      "يرجى إدخال الرمز المكون من 6 أرقام بالكامل",
       "Token not found. Please sign up again.":
-          "الرمز غير موجود. يرجى التسجيل مرة أخرى.",
+      "الرمز غير موجود. يرجى التسجيل مرة أخرى.",
       "Failed to resend verification code": "فشل في إعادة إرسال رمز التحقق",
       "Please enter complaint title": "يرجى إدخال عنوان الشكوى",
       "Title must be at least 5 characters":
-          "يجب أن يكون العنوان 5 أحرف على الأقل",
+      "يجب أن يكون العنوان 5 أحرف على الأقل",
       "Please select complaint type": "يرجى اختيار نوع الشكوى",
       "Please select responsible entity": "يرجى اختيار الجهة المسؤولة",
       "Please enter description": "يرجى إدخال الوصف",
       "Description must be at least 10 characters":
-          "يجب أن يكون الوصف 10 أحرف على الأقل",
+      "يجب أن يكون الوصف 10 أحرف على الأقل",
       "Please enter location": "يرجى إدخال الموقع",
       "Please select all required fields": "يرجى اختيار جميع الحقول المطلوبة",
       "Complaint submitted successfully": "تم تقديم الشكوى بنجاح",
@@ -119,9 +119,9 @@ class MyLocale implements Translations {
       "low": "منخفضة",
       "Please Wait...": "يرجى الانتظار...",
       "You can try again once the countdown finishes.":
-          "يمكنك المحاولة مرة أخرى بعد انتهاء العد التنازلي.",
+      "يمكنك المحاولة مرة أخرى بعد انتهاء العد التنازلي.",
       "Due to too many failed login attempts,\nyour account is locked:":
-          "بسبب كثرة محاولات تسجيل الدخول الفاشلة،\nتم قفل حسابك:",
+      "بسبب كثرة محاولات تسجيل الدخول الفاشلة،\nتم قفل حسابك:",
       "Account Temporarily Locked": "الحساب مغلق مؤقتًا",
       "Verify Your Email": "تحقق من بريدك الإلكتروني",
       "We sent a verification code to": "لقد أرسلنا رمز تحقق إلى",
@@ -131,7 +131,7 @@ class MyLocale implements Translations {
       "Back to Sign Up": "العودة إلى التسجيل",
       "Forgot Password": "نسيت كلمة المرور",
       "Enter your email to receive reset code":
-          "أدخل بريدك الإلكتروني لاستلام رمز إعادة التعيين",
+      "أدخل بريدك الإلكتروني لاستلام رمز إعادة التعيين",
       "Send Code": "إرسال الرمز",
       "Reset Password": "إعادة تعيين كلمة المرور",
       "New Password": "كلمة المرور الجديدة",
@@ -166,7 +166,8 @@ class MyLocale implements Translations {
       'in progress':'تحت المعالجة',
       'There are no unread notifications':'لا توجد إشعارات غير مقروءة',
       'There are no notifications':'لا توجد إشعارات',
-
+      'Try again in':'حاول مرة أخرى في ',
+      'min':'دقيقة',
 
     },
 
@@ -197,7 +198,7 @@ class MyLocale implements Translations {
       "Explain the problem in detail": "Explain the problem in detail",
       "Location": "Location",
       "Select location from map or enter manually":
-          "Select location from map or enter manually",
+      "Select location from map or enter manually",
       "Select location on map": "Select location on map",
       "Confirm": "Confirm",
       "Cancel": "Cancel",
@@ -215,7 +216,7 @@ class MyLocale implements Translations {
       "date": "Date",
       "Complaint Title": "Complaint Title",
       "Enter a brief title for your complaint":
-          "Enter a brief title for your complaint",
+      "Enter a brief title for your complaint",
       "User Name": "User Name",
       "Enter your name": "Enter your name",
       "Phone Number": "Phone Number",
@@ -231,13 +232,13 @@ class MyLocale implements Translations {
       "Sign in": "Sign in",
       "if you don't have an account ?": "if you don't have an account ?",
       "Choose location from map or enter manually":
-          "Choose location from map or enter manually",
+      "Choose location from map or enter manually",
       "success": "Success",
       "Error": "Error",
       "Password updated successfully": "Password updated successfully",
       "Something went wrong": "Something went wrong",
       "Please wait a moment before trying again.":
-          "Please wait a moment before trying again.",
+      "Please wait a moment before trying again.",
       "Wait": "Wait",
       "Please enter your email": "Please enter your email",
       "Invalid email format": "Invalid email format",
@@ -245,12 +246,12 @@ class MyLocale implements Translations {
       "Invalid email": "Invalid email",
       "Minimum 8 chars": "Minimum 8 chars",
       "Password must be at least 6 characters":
-          "Password must be at least 6 characters",
+      "Password must be at least 6 characters",
       "Login successful": "Login successful",
       "Your email is not verified. Please verify first.":
-          "Your email is not verified. Please verify first.",
+      "Your email is not verified. Please verify first.",
       "Your account was temporarily locked due to repeated failed attempts.":
-          "Your account was temporarily locked due to repeated failed attempts.",
+      "Your account was temporarily locked due to repeated failed attempts.",
       "Security Alert": "Security Alert",
       "Login Failed": "Login Failed",
       "Please enter your phone number": "Please enter your phone number",
@@ -259,28 +260,28 @@ class MyLocale implements Translations {
       "Enter verification code": "Enter verification code",
       "Code must be 6 digits": "Code must be 6 digits",
       "A verification code has been sent to your email.":
-          "A verification code has been sent to your email.",
+      "A verification code has been sent to your email.",
       "Almost Done": "Almost Done",
       "Please enter the complete 6-digit code":
-          "Please enter the complete 6-digit code",
+      "Please enter the complete 6-digit code",
       "Token not found. Please sign up again.":
-          "Token not found. Please sign up again.",
+      "Token not found. Please sign up again.",
       "Failed to resend verification code":
-          "Failed to resend verification code",
+      "Failed to resend verification code",
       "Please enter complaint title": "Please enter complaint title",
       "Title must be at least 5 characters":
-          "Title must be at least 5 characters",
+      "Title must be at least 5 characters",
       "Please select complaint type": "Please select complaint type",
       "Please select responsible entity": "Please select responsible entity",
       "Please enter description": "Please enter description",
       "Description must be at least 10 characters":
-          "Description must be at least 10 characters",
+      "Description must be at least 10 characters",
       "Please enter location": "Please enter location",
       "Please select all required fields": "Please select all required fields",
       "Complaint submitted successfully": "Complaint submitted successfully",
       "Failed to submit complaint": "Failed to submit complaint",
       "You can upload up to 15 files only":
-          "You can upload up to 15 files only",
+      "You can upload up to 15 files only",
       "Limit Reached": "Limit Reached",
       "failed_to_load_complaints": "Failed to load complaints",
       "failed_to_load_complaint_details": "Failed to load complaint details",
@@ -289,9 +290,9 @@ class MyLocale implements Translations {
       "low": "Low",
       "Please Wait...": "Please Wait...",
       "You can try again once the countdown finishes.":
-          "You can try again once the countdown finishes.",
+      "You can try again once the countdown finishes.",
       "Due to too many failed login attempts,\nyour account is locked:":
-          "Due to too many failed login attempts,\nyour account is locked:",
+      "Due to too many failed login attempts,\nyour account is locked:",
       "Account Temporarily Locked": "Account Temporarily Locked",
       "Verify Your Email": "Verify Your Email",
       "We sent a verification code to": "We sent a verification code to",
@@ -301,7 +302,7 @@ class MyLocale implements Translations {
       "Back to Sign Up": "Back to Sign Up",
       "Forgot Password": "Forgot Password",
       "Enter your email to receive reset code":
-          "Enter your email to receive reset code",
+      "Enter your email to receive reset code",
       "Send Code": "Send Code",
       "Reset Password": "Reset Password",
       "New Password": "New Password",
@@ -337,7 +338,8 @@ class MyLocale implements Translations {
       'in progress':'in progress',
       'There are no unread notifications': 'There are no unread notifications',
       'There are no notifications':'There are no notifications',
-
+      'Try again in':'Try again in',
+      'min':'min',
     },
   };
 }

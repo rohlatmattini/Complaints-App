@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -6,10 +7,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'app/app_initializer/app_initializer.dart';
+import 'app/routes/app_routes.dart';
 import 'app/routes/routes_pages.dart';
 import 'app/theme/theme_controller.dart';
 import 'core/localization/locale_controller.dart';
 import 'core/localization/my_locale.dart';
+import 'modules/auth/controller/user_controller.dart';
 import 'modules/auth/view/signin.dart';
 
 SharedPreferences? sharedpref;
@@ -21,13 +24,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppInitializer.initialize();
   Get.put(MyLocaleController());
-
-
-  runApp(const MyApp());
-}
+  Get.put(UserController(), permanent: true);
+  final storage = const FlutterSecureStorage();
+  String? isLoggedIn = await storage.read(key: 'isLoggedIn');
+  runApp(MyApp(isLoggedIn: isLoggedIn == 'true'));}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool isLoggedIn;
+  const MyApp({super.key, required this.isLoggedIn});
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +56,9 @@ class MyApp extends StatelessWidget {
                 : themeController.lightTheme,
             getPages: AppPages.pages,
 
-            home: child,
-          ),
+            initialRoute: isLoggedIn ? AppRoute.userComplaints : AppRoute.login,          ),
         );
       },
-      child: SignInScreen(),
     );
   }
 }

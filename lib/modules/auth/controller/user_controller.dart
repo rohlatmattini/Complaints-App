@@ -17,8 +17,9 @@ class UserController extends GetxController {
 
   @override
   void onInit() {
-    loadUser();
     super.onInit();
+    loadUser();
+
   }
 
   void loadUser() async {
@@ -32,19 +33,15 @@ class UserController extends GetxController {
       final response = await apiService.logout(token);
 
       if (response != null) {
-        // 🧹 مسح البيانات المخزنة
         await UserService().clearUser();
         await const FlutterSecureStorage().delete(key: 'token');
 
-        // 🧹 تصفير المستخدم داخل الـ Controller
         user.value = null;
 
-        // 🧹 حذف SignInController حتى لا تتكرر GlobalKey
         if (Get.isRegistered<SignInController>()) {
           Get.delete<SignInController>();
         }
 
-        // 🔁 الرجوع للـ login بشكل نظيف
         Get.offAllNamed(AppRoute.login);
       }
     }

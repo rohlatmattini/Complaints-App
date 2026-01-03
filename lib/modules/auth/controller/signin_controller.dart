@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
@@ -21,8 +23,29 @@ class SignInController extends GetxController {
   final storage = const FlutterSecureStorage();
   final ApiService apiService = ApiService();
   DateTime lastAttempt = DateTime.now().subtract(Duration(seconds: 5));
+  RxInt secondsRemaining = 0.obs;
+  Timer? timer;
 
+
+  void startTimer(int seconds) {
+    secondsRemaining.value = seconds;
+    timer?.cancel(); // إلغاء أي تاييمر قديم
+    timer = Timer.periodic(const Duration(seconds: 1), (t) {
+      if (secondsRemaining.value > 0) {
+        secondsRemaining.value--;
+      } else {
+        t.cancel();
+      }
+    });
+  }
+
+  @override
+  void onClose() {
+    timer?.cancel();
+    super.onClose();
+  }
   void togglePasswordVisibility() => obscureText.value = !obscureText.value;
+
   void toggleRemember(bool? value) => rememberPassword.value = value ?? false;
 
   String? validateEmail(String? value) {
@@ -40,7 +63,10 @@ class SignInController extends GetxController {
   // Login API call
   void submitForm() async {
     if (!formKey.currentState!.validate()) return;
-
+    if (secondsRemaining.value > 0) {
+      Get.snackbar('Wait'.tr, '${'Please wait'.tr} ${secondsRemaining.value} ${'seconds'.tr}');
+      return;
+    }
     isLoading.value = true;
 
     final model = LoginModel(
@@ -60,6 +86,11 @@ class SignInController extends GetxController {
       if (token != null) {
         await storage.write(key: 'token', value: token);
       }
+      if (rememberPassword.value) {
+        await storage.write(key: 'isLoggedIn', value: 'true');
+      } else {
+        await storage.write(key: 'isLoggedIn', value: 'false');
+      }
 
       final userData = response['data']['user'];
 
@@ -70,6 +101,7 @@ class SignInController extends GetxController {
 
       //   حفظ بيانات المستخدم
       await UserService().saveUser(user);
+
 
       if (emailVerified) {
         try {
@@ -95,10 +127,36 @@ class SignInController extends GetxController {
       }
     }
 
-    // Get.snackbar(
-    //   'Error',
-    //   response?['message'] ?? 'Login failed',
-    //   snackPosition: SnackPosition.BOTTOM,
-    // );
+    else {
+      String message = response?['message'] ?? 'Login failed'.tr;      if (response != null) {
+        message = response['message'] ?? message;
+
+        if (response['errors'] != null && response['errors']['email'] != null) {
+          message = response['errors']['email'][0];
+        }
+      }
+      final regExp = RegExp(r'[-+]?(\d+(\.\d+)?)');
+      final match = regExp.firstMatch(message);
+
+      if (match != null) {
+        double extractedValue = double.parse(match.group(0)!);
+
+        int totalSeconds = (extractedValue.abs() * 60).toInt();
+
+        if (totalSeconds > 0) {
+          startTimer(totalSeconds);
+        }
+      }
+
+
+      Get.snackbar(
+        'Login Failed'.tr,
+        message,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.redAccent.withOpacity(0.8),
+        colorText: Colors.white,
+        duration: const Duration(seconds: 5),
+      );
+    }
   }
 }
