@@ -40,7 +40,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Icon(Icons.password_rounded,
-                          size: 80.sp, color: AppColor.blue),
+                          size: 80.sp, color: isDark?AppColor.white:AppColor.blue,),
 
                       SizedBox(height: 20.h),
 
@@ -49,7 +49,7 @@ class ResetPasswordScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 28.sp,
                           fontWeight: FontWeight.bold,
-                          color: AppColor.blue,
+                          color: isDark?AppColor.white:AppColor.blue,
                         ),
                       ),
 
@@ -110,7 +110,7 @@ class ResetPasswordScreen extends StatelessWidget {
                         width: double.infinity,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColor.blue,
+                            backgroundColor: isDark?AppColor.bluegrey:AppColor.blue,
                             padding: EdgeInsets.symmetric(vertical: 15.h),
                           ),
                           onPressed: controller.isResetting.value
@@ -141,7 +141,7 @@ class ResetPasswordScreen extends StatelessWidget {
                             : Text(
                           "Resend Code".tr,
                           style: TextStyle(
-                            color: AppColor.blue,
+                            color: isDark?AppColor.white:AppColor.blue,
                             fontSize: 16.sp,
                             fontWeight: FontWeight.bold,
                           ),

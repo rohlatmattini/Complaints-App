@@ -20,7 +20,7 @@ class AttachmentsSection extends StatelessWidget {
               'Attachments (Images / Documents)'.tr,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: AppColor.blue,
+                color: isDark?AppColor.white:AppColor.blue,
                 fontSize: 16.sp,
               ),
             ),
@@ -31,7 +31,7 @@ class AttachmentsSection extends StatelessWidget {
                 color: attachmentController.attachedFiles.length >=
                     attachmentController.maxFiles
                     ? AppColor.red
-                    : AppColor.blue,
+                    : isDark?AppColor.white:AppColor.blue,
                 fontSize: 12.sp,
               ),
             )),
@@ -41,7 +41,7 @@ class AttachmentsSection extends StatelessWidget {
 
         ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppColor.blue,
+            backgroundColor: isDark?AppColor.bluegrey:AppColor.blue,
             minimumSize: Size(double.infinity, 45.h),
           ),
           onPressed: attachmentController.attachFile,
@@ -96,7 +96,7 @@ class AttachmentsSection extends StatelessWidget {
               padding: EdgeInsets.all(16.w),
               decoration: BoxDecoration(
                 color: isDark
-                    ? AppColor.bluegrey
+                    ? AppColor.darkBlueGrey
                     : Colors.grey[100],
                 borderRadius: BorderRadius.circular(8),
               ),

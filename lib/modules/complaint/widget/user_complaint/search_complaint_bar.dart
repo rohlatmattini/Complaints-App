@@ -21,7 +21,7 @@ class SearchComplaintBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: TextField(
-        cursorColor: AppColor.blue,
+        cursorColor: isDark ? Colors.white : AppColor.blue,
         decoration: InputDecoration(
           hintText: 'search_complaint'.tr,
           prefixIcon: Icon(Icons.search, color: AppColor.subtitleColor),
@@ -42,7 +42,7 @@ class SearchComplaintBar extends StatelessWidget {
     focusedBorder: OutlineInputBorder(
     borderRadius: BorderRadius.circular(10.r),
     borderSide: BorderSide(
-    color: AppColor.blue,
+    color: isDark ? Colors.white : AppColor.blue,
     width: 1.8,
     ),
     ),

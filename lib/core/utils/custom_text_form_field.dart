@@ -60,7 +60,7 @@ class CustomTextFormField extends StatelessWidget {
         prefixIcon: prefixIcon != null
             ? Icon(
           prefixIcon,
-          color: AppColor.blue,
+          color: isDark?AppColor.white: AppColor.blue,
         )
             : null,
 
@@ -69,7 +69,7 @@ class CustomTextFormField extends StatelessWidget {
           onPressed: onSuffixPressed,
           icon: Icon(
             suffixIcon,
-            color: AppColor.blue,
+            color: isDark?AppColor.white: AppColor.blue,
           ),
         )
             : null,
@@ -89,7 +89,7 @@ class CustomTextFormField extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
           borderSide: BorderSide(
-            color: AppColor.blue,
+            color: isDark?AppColor.white: AppColor.blue,
             width: 1.8,
           ),
         ),

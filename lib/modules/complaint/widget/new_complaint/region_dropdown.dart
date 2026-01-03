@@ -64,7 +64,7 @@ class RegionDropdown extends StatelessWidget {
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.r),
                 borderSide: BorderSide(
-                  color: AppColor.blue,
+                  color: isDark ? Colors.white : AppColor.blue,
                   width: 2,
                 ),
               ),

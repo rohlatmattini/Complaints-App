@@ -26,11 +26,11 @@ class RememberForgotRow extends StatelessWidget {
             Checkbox(
               value: rememberPassword,
               onChanged: onRememberChanged,
-              activeColor: AppColor.blue,
+              activeColor: isDark?AppColor.white: AppColor.blue,
             ),
              Text(
               'Remember me'.tr,
-              style: TextStyle(color: Colors.black45),
+              style: TextStyle(color: isDark?AppColor.white:Colors.black45),
             ),
           ],
         ),

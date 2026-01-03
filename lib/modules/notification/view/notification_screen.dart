@@ -19,7 +19,7 @@ class NotificationsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.blue,
+        backgroundColor: isDark?AppColor.darkBlueGrey:AppColor.blue,
         title: Obx(() => Text(
           '${"Notifications".tr}${controller.unreadCount.value > 0 ? ' (${controller.unreadCount.value})' : ''}',
           style: TextStyle(

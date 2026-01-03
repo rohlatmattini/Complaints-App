@@ -23,8 +23,10 @@ class NewComplaintScreen extends StatelessWidget {
 
     final formController = Get.find<ComplaintFormController>();
     final submissionController = Get.find<ComplaintSubmissionController>();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return CustomScaffold(
+
       backgroundImage: AppImageAsset.complaintImage,
       child: Column(
         children: [
@@ -52,7 +54,7 @@ class NewComplaintScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.w900,
-                          color: AppColor.blue,
+                          color:isDark?AppColor.white:AppColor.blue,
                         ),
                       ),
                        SizedBox(height: 20.h),
@@ -81,7 +83,7 @@ class NewComplaintScreen extends StatelessWidget {
                         width: double.infinity,
                         child: ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColor.blue,
+                            backgroundColor: isDark?AppColor.bluegrey:AppColor.blue,
                             padding:  EdgeInsets.symmetric(vertical: 15.h),
                           ),
                           onPressed: submissionController.submitComplaint,

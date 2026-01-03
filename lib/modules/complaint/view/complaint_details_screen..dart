@@ -24,7 +24,7 @@ class ComplaintDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('ComplaintDetails'.tr,textAlign:TextAlign.center),
-        backgroundColor: AppColor.blue,
+        backgroundColor: isDark?AppColor.darkBlueGrey:AppColor.blue,
         foregroundColor: isDark ? AppColor.darkText : AppColor.white,
         elevation: 0,
         leading: IconButton(
@@ -115,7 +115,7 @@ class ComplaintDetailsScreen extends StatelessWidget {
   Widget _buildSectionTitle(String title, IconData icon, bool isDark) {
     return Row(
       children: [
-        Icon(icon, color: AppColor.blue, size: 20),
+        Icon(icon, color: isDark?AppColor.white:AppColor.blue, size: 20),
         const SizedBox(width: 8),
         Text(
           title,

@@ -13,6 +13,7 @@ class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final UserController userController = Get.find<UserController>();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Obx(() {
       final user = userController.user.value;
@@ -28,7 +29,7 @@ class MainDrawer extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: const BoxDecoration(color: AppColor.blue),
+              decoration:  BoxDecoration(color: isDark?AppColor.darkBlueGrey:AppColor.blue),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -78,7 +79,7 @@ class MainDrawer extends StatelessWidget {
             AppTile(
               icon: Icons.settings,
               label: 'Settings'.tr,
-              iconColor: AppColor.blue,
+              iconColor: isDark?AppColor.white:AppColor.blue,
               onTap: () {
                 Get.toNamed(AppRoute.setting);
               },
@@ -87,7 +88,7 @@ class MainDrawer extends StatelessWidget {
             AppTile(
               icon: Icons.notification_add,
               label: 'Notifications'.tr,
-              iconColor: AppColor.blue,
+              iconColor: isDark?AppColor.white:AppColor.blue,
               onTap: () {
                 Get.back(); // إغلاق الدرور
                 Get.toNamed('/notifications');
@@ -97,7 +98,7 @@ class MainDrawer extends StatelessWidget {
             AppTile(
               icon: Icons.logout_sharp,
               label: 'Logout'.tr,
-              iconColor: AppColor.blue,
+              iconColor: isDark?AppColor.white:AppColor.blue,
               textColor: AppColor.red,
               onTap: () {
                 _showLogoutDialog(context);

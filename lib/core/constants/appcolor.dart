@@ -60,6 +60,12 @@ class AppColor {
     else if (statusLower.contains('مغلقة') || statusLower.contains('closed')) {
       return isDark ? darkOrange : orange;
     }
+    else if (statusLower.contains('طلب معلومات') ||
+        statusLower.contains('needs_more_info') ||
+        statusLower.contains('need more info')) {
+      return isDark ? Colors.purple.shade200 :Colors.purple.withOpacity(0.6);
+    }
+
 
     return isDark ? AppColor.darkBlueGrey : AppColor.blue;
   }

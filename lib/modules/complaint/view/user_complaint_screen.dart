@@ -31,7 +31,7 @@ class UserComplaintsScreen extends StatelessWidget {
             color: isDark ? AppColor.darkText : AppColor.white,
           ),
         ),
-        backgroundColor: AppColor.blue,
+        backgroundColor: isDark?AppColor.darkBlueGrey:AppColor.blue,
         foregroundColor: isDark ? AppColor.darkText : AppColor.white,
         actions: [
           ComplaintFilterMenu(

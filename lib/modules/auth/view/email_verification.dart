@@ -11,9 +11,10 @@ class EmailVerificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final SignUpController controller = Get.find<SignUpController>();
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: isDark ? AppColor.darkBlueGrey : AppColor.white,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.all(25.w),
@@ -26,7 +27,7 @@ class EmailVerificationScreen extends StatelessWidget {
                 Icon(
                   Icons.verified_user_outlined,
                   size: 80.sp,
-                  color: AppColor.blue,
+                  color: isDark?AppColor.white:AppColor.blue,
                 ),
                 SizedBox(height: 20.h),
                 Text(
@@ -34,7 +35,7 @@ class EmailVerificationScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 28.sp,
                     fontWeight: FontWeight.w900,
-                    color: AppColor.blue,
+                    color: isDark?AppColor.white:AppColor.blue,
                   ),
                 ),
                 SizedBox(height: 15.h),
@@ -51,7 +52,7 @@ class EmailVerificationScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
-                    color: AppColor.blue,
+                    color: isDark?AppColor.white:AppColor.blue,
                   ),
                 ),
                 SizedBox(height: 40.h),
@@ -86,7 +87,7 @@ class EmailVerificationScreen extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColor.blue,
+                      backgroundColor: isDark?AppColor.bluegrey:AppColor.blue,
                       padding: EdgeInsets.symmetric(vertical: 15.h),
                     ),
                     onPressed: controller.isVerifying.value
@@ -108,7 +109,7 @@ class EmailVerificationScreen extends StatelessWidget {
                     "Resend Code".tr,
                     style: TextStyle(
                       fontSize: 16.sp,
-                      color: AppColor.blue,
+                      color: isDark?AppColor.white:AppColor.blue,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

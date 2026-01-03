@@ -119,7 +119,7 @@ class SignUpScreen extends StatelessWidget {
                         width: double.infinity,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColor.blue,
+                            backgroundColor: isDark?AppColor.bluegrey:AppColor.blue,
                             padding: EdgeInsets.symmetric(vertical: 15.h),
                           ),
                           onPressed: controller.isLoading.value ? null : controller.submitForm,

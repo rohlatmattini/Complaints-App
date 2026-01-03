@@ -15,10 +15,11 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final MyLocaleController controllerlang = Get.find();
     final ThemeController themecontroller = Get.find();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.blue,
+        backgroundColor: isDark?AppColor.darkBlueGrey:AppColor.blue,
         title: Text(
           "Settings".tr,
           style: TextStyle(
@@ -36,13 +37,13 @@ class SettingScreen extends StatelessWidget {
             // Dark Mode مع Switch
             AppTile(
               icon: Icons.dark_mode_rounded,
-              iconColor: AppColor.blue,
+              iconColor: isDark ? Colors.white : AppColor.blue,
               label: "Dark mode".tr,
               onTap: () {},
               trailing: Obx(() => Switch(
                 value: themecontroller.isDarkMode.value,
                 onChanged: (state) => themecontroller.toggleTheme(),
-                activeColor: AppColor.blue,
+                activeColor: isDark ? Colors.white : AppColor.blue,
               )),
             ),
 
@@ -51,13 +52,13 @@ class SettingScreen extends StatelessWidget {
 
             AppTile(
               icon: Icons.language,
-              iconColor: AppColor.blue,
+              iconColor: isDark ? Colors.white : AppColor.blue,
               label: "Language".tr,
               onTap: () {},
               trailing: Obx(() => DropdownButton<String>(
                 value: controllerlang.currentLang.value,
                 underline: const SizedBox(),
-                icon: const Icon(Icons.arrow_drop_down, color: AppColor.blue),
+                icon: Icon(Icons.arrow_drop_down, color: isDark ? Colors.white : AppColor.blue),
                 items: [
                   DropdownMenuItem(
                     value: "en",

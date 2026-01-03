@@ -124,7 +124,7 @@ class SignInScreen extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: controller.secondsRemaining.value > 0
                                 ? Colors.grey
-                                : AppColor.blue,
+                                : isDark?AppColor.bluegrey:AppColor.blue,
                             padding: EdgeInsets.symmetric(vertical: 15.h),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12.r),
@@ -141,7 +141,7 @@ class SignInScreen extends StatelessWidget {
                           )
                               : Text(
                             'Sign in'.tr,
-                            style: TextStyle(fontSize: 18.sp, color: Colors.white),
+                            style: TextStyle(fontSize: 18.sp, color: AppColor.white),
                           ),
                         )),
                       ),
