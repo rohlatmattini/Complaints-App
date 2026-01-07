@@ -168,6 +168,10 @@ class MyLocale implements Translations {
       'There are no notifications':'لا توجد إشعارات',
       'Try again in':'حاول مرة أخرى في ',
       'min':'دقيقة',
+      "needs_more_info": "بانتظار معلومات إضافية",
+      "edit": "تعديل ",
+      "update_info_title": "إضافة معلومات إضافية",
+      "save_changes_button": "حفظ التعديلات"
 
     },
 
@@ -340,6 +344,10 @@ class MyLocale implements Translations {
       'There are no notifications':'There are no notifications',
       'Try again in':'Try again in',
       'min':'min',
+      "needs_more_info": "Needs More Info",
+      "edit": "Edit",
+      "update_info_title": "Update Information",
+      "save_changes_button": "Save Changes"
     },
   };
 }

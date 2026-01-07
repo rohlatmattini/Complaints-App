@@ -6,6 +6,7 @@ import '../../../app/routes/app_routes.dart';
 import '../../../core/constants/appcolor.dart';
 import '../../../core/utils/load_indicator.dart';
 import '../../../data/models/drawer/main_drawer.dart';
+import '../controller/new_complaint_controller/complaint_form_controller.dart';
 import '../controller/user_complaint_controller/user_complaint_controller.dart';
 import '../widget/user_complaint/complaint_card.dart';
 import '../widget/user_complaint/complaint_filter_menu.dart';
@@ -59,7 +60,15 @@ class UserComplaintsScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.toNamed(AppRoute.addNewComplaint),
+        onPressed: () {
+          // نتحقق إذا كان الكنترول موجوداً، نقوم بتصفيره، وإلا نقوم بإنشائه
+          if (Get.isRegistered<ComplaintFormController>()) {
+            Get.find<ComplaintFormController>().clearForm();
+          } else {
+            Get.put(ComplaintFormController()).clearForm();
+          }
+          Get.toNamed(AppRoute.addNewComplaint);
+        },
         backgroundColor: AppColor.blue,
         child: Icon(Icons.add, color: AppColor.white),
       ),

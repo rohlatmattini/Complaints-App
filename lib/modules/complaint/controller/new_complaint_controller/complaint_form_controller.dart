@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../data/models/complaint/complaint_model.dart';
+import '../../../../data/models/complaint/user_complaint.dart';
 
 class ComplaintFormController extends GetxController {
   final formKey = GlobalKey<FormState>();
-
+  var isEditing = false.obs;
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
   final locationController = TextEditingController();
+  var editingComplaintId = Rxn<int>();
 
   var complaint = ComplaintModel(
     title: '',
@@ -117,6 +119,8 @@ class ComplaintFormController extends GetxController {
 
   // Form reset
   void clearForm() {
+    isEditing.value = false;
+    editingComplaintId.value = null;
     titleController.clear();
     descriptionController.clear();
     locationController.clear();
@@ -142,6 +146,21 @@ class ComplaintFormController extends GetxController {
     return 'COMP${now.year}${now.month.toString().padLeft(2, '0')}${now.day.toString().padLeft(2, '0')}${now.hour.toString().padLeft(2, '0')}${now.minute.toString().padLeft(2, '0')}${now.second.toString().padLeft(2, '0')}';
   }
 
+  void loadComplaintToEdit(UserComplaint oldComplaint) {
+    isEditing.value = true;
+    editingComplaintId.value = oldComplaint.id;
+
+    titleController.text = oldComplaint.title;
+    descriptionController.text = oldComplaint.description;
+
+    // Sync the reactive model
+    complaint.update((val) {
+      val?.title = oldComplaint.title;
+      val?.description = oldComplaint.description;
+      val?.complaintType = oldComplaint.category.label;
+
+    });
+  }
   @override
   void onClose() {
     titleController.dispose();

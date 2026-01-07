@@ -1,8 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../app/routes/app_routes.dart';
 import '../../../../core/constants/appcolor.dart';
 import '../../../../data/models/complaint/user_complaint.dart';
+import '../../controller/new_complaint_controller/complaint_form_controller.dart';
+import '../../controller/user_complaint_controller/user_complaint_controller.dart';
 
 class ComplaintSubtitle extends StatelessWidget {
   final UserComplaint complaint;
@@ -19,7 +22,7 @@ class ComplaintSubtitle extends StatelessWidget {
 
     final statusColor = AppColor.getStatusColor(complaint.status, isDark: isDark);
     final priorityColor = AppColor.getPriorityColor(complaint.priority, isDark: isDark);
-
+    final cleanStatus = ComplaintTextHelper.normalizeStatus(complaint.status).tr;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -40,8 +43,8 @@ class ComplaintSubtitle extends StatelessWidget {
             // Status Chip
             Chip(
               label: Text(
-                complaint.status,
-                style: TextStyle(
+          cleanStatus.tr,
+     style: TextStyle(
                   color: statusColor,
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
@@ -50,8 +53,18 @@ class ComplaintSubtitle extends StatelessWidget {
               backgroundColor: statusColor.withOpacity(0.1),
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               visualDensity: VisualDensity.compact,
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+              padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 0),
             ),
+            if (cleanStatus == 'needs_more_info'.tr)
+              TextButton.icon(
+                onPressed: () {
+                  final formController = Get.put(ComplaintFormController());
+                  formController.loadComplaintToEdit(complaint);
+                  Get.toNamed(AppRoute.addNewComplaint);
+                },
+                icon: const Icon(Icons.edit, size: 16, color: AppColor.blue),
+                label: Text('edit'.tr, style: const TextStyle(color: AppColor.blue)),
+              ),
             // Priority Chip
 
           ],

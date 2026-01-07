@@ -49,14 +49,16 @@ class NewComplaintScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        'submit_complaint_title'.tr,
+                      Obx(() => Text(
+                        formController.isEditing.value
+                            ? 'update_info_title'.tr  // "إضافة معلومات" أو "تعديل المعلومات"
+                            : 'submit_complaint_title'.tr,
                         style: TextStyle(
                           fontSize: 26,
-                          fontWeight: FontWeight.w900,
-                          color:isDark?AppColor.white:AppColor.blue,
+                          fontWeight: FontWeight.bold,
+                          color: isDark ? AppColor.white : AppColor.blue,
                         ),
-                      ),
+                      )),
                        SizedBox(height: 20.h),
 
                       TitleField(),
@@ -88,10 +90,13 @@ class NewComplaintScreen extends StatelessWidget {
                           ),
                           onPressed: submissionController.submitComplaint,
                           icon: const Icon(Icons.send, color: AppColor.white),
-                          label: Text(
-                            'submit_complaint_button'.tr,
-                            style:  TextStyle(fontSize: 18.sp, color: AppColor.white),
-                          ),
+                          label:
+                          Obx(() => Text(
+                            formController.isEditing.value
+                                ? 'save_changes_button'.tr  // "حفظ التعديلات"
+                                : 'submit_complaint_button'.tr,
+                            style: TextStyle(fontSize: 18.sp, color: AppColor.white),
+                          )),
                         ),
                       ),
                     ],

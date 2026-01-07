@@ -26,11 +26,12 @@ class UserComplaintController extends GetxController {
   var searchQuery = ''.obs;
   var statusFilter = Rxn<String>();
   var priorityFilter = Rxn<String>();
-
+  final ScrollController scrollController = ScrollController();
   @override
   void onInit() {
     super.onInit();
     loadComplaints();
+
     _subscribeToComplaintEvents();
     _subscribeToLanguageChanges();
 
@@ -201,7 +202,8 @@ class UserComplaintController extends GetxController {
 
 class ComplaintTextHelper {
   static String normalizeStatus(String status) {
-    final s = status.toLowerCase().trim();
+    String cleanStatus = status.contains('.') ? status.split('.').last : status;
+    final s = cleanStatus.toLowerCase().trim();
 
     if (s.contains('مراجعة') || s.contains('pending') || s.contains('review')) {
       return 'pending';
@@ -221,7 +223,9 @@ class ComplaintTextHelper {
     if (s.contains('تحت المعالجة') || s.contains('in progress')) {
       return 'in progress';
     }
-
+    if (s.contains('needs_more_info') || s.contains('معلومات اضافية')) {
+      return 'needs_more_info';
+    }
 
 
     return s;

@@ -29,7 +29,7 @@ class SignInController extends GetxController {
 
   void startTimer(int seconds) {
     secondsRemaining.value = seconds;
-    timer?.cancel(); // إلغاء أي تاييمر قديم
+    timer?.cancel();
     timer = Timer.periodic(const Duration(seconds: 1), (t) {
       if (secondsRemaining.value > 0) {
         secondsRemaining.value--;
