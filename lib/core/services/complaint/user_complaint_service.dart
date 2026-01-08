@@ -1,5 +1,6 @@
 
 import 'dart:convert';
+import 'dart:io';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
@@ -64,5 +65,73 @@ class UserComplaintService {
       return null;
     }
   }
+
+
+  // أو يمكنك استخدام هذه النسخة الأبسط بدون multipart للبيانات النصية فقط
+  Future<Map<String, dynamic>?> updateComplaintSimple(
+  int complaintId,
+  Map<String, dynamic> data,
+  ) async {
+  try {
+    final token = await storage.read(key: 'token');
+    final response = await http.put(
+  Uri.parse('${AppLinks.baseUrl}/complaints/$complaintId'),
+  headers: {
+    'Authorization': 'Bearer $token',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  },
+  body: json.encode(data),
+  );
+
+  if (response.statusCode == 200) {
+  return json.decode(response.body);
+  } else {
+  print('Update failed: ${response.statusCode} - ${response.body}');
+  return null;
+  }
+  } catch (e) {
+  print('Error updating complaint: $e');
+  return null;
+  }
+  }
+
+  Future<Map<String, dynamic>?> updateComplaint(
+      int complaintId,
+      Map<String, dynamic> data,
+      ) async {
+    try {
+      final token = await storage.read(key: 'token');
+
+      print('Updating complaint $complaintId with data: $data');
+
+      final response = await http.put(
+        Uri.parse('${AppLinks.baseUrl}/complaints/$complaintId'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Accept-Language': langController.currentLangFromPref,
+          'Authorization': 'Bearer $token',
+        },
+        body: json.encode(data),
+      );
+
+      print('Update response status: ${response.statusCode}');
+      print('Update response body: ${response.body}');
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        return responseData;
+      } else {
+        print('Failed to update complaint: ${response.statusCode}');
+        print('Error response: ${response.body}');
+        return null;
+      }
+    } catch (e) {
+      print('Error updating complaint: $e');
+      return null;
+    }
+  }
+
 }
 

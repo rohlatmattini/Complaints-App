@@ -138,7 +138,7 @@ class ComplaintFormController extends GetxController {
     selectedPriority.value = 'medium';
     selectedRegion.value = '';
 
-    Get.snackbar('Form Cleared'.tr, 'All fields have been cleared'.tr);
+ //   Get.snackbar('Form Cleared'.tr, 'All fields have been cleared'.tr);
   }
 
   static String _generateReferenceNumber() {
@@ -153,15 +153,21 @@ class ComplaintFormController extends GetxController {
     titleController.text = oldComplaint.title;
     descriptionController.text = oldComplaint.description;
 
-    // Sync the reactive model
+    if (oldComplaint.region != null) {
+      selectedRegion.value = oldComplaint.region!.name;
+      locationController.text = oldComplaint.region!.name;
+    }
+
+    selectedPriority.value = oldComplaint.priority;
+
     complaint.update((val) {
       val?.title = oldComplaint.title;
       val?.description = oldComplaint.description;
       val?.complaintType = oldComplaint.category.label;
-
+      val?.responsibleEntity = oldComplaint.department.name;
+      val?.location = oldComplaint.region?.name ?? '';
     });
-  }
-  @override
+  }  @override
   void onClose() {
     titleController.dispose();
     descriptionController.dispose();

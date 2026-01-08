@@ -43,8 +43,8 @@ class ComplaintSubtitle extends StatelessWidget {
             // Status Chip
             Chip(
               label: Text(
-          cleanStatus.tr,
-     style: TextStyle(
+                cleanStatus.tr,
+                style: TextStyle(
                   color: statusColor,
                   fontSize: 10,
                   fontWeight: FontWeight.bold,

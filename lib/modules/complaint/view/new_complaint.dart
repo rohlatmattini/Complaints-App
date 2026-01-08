@@ -30,7 +30,7 @@ class NewComplaintScreen extends StatelessWidget {
       backgroundImage: AppImageAsset.complaintImage,
       child: Column(
         children: [
-           Expanded(flex: 1, child: SizedBox(height: 10.h)),
+          Expanded(flex: 1, child: SizedBox(height: 10.h)),
 
           Expanded(
             flex: 7,
@@ -59,7 +59,7 @@ class NewComplaintScreen extends StatelessWidget {
                           color: isDark ? AppColor.white : AppColor.blue,
                         ),
                       )),
-                       SizedBox(height: 20.h),
+                      SizedBox(height: 20.h),
 
                       TitleField(),
                       SizedBox(height: 20.h),

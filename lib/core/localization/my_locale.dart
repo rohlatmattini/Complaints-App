@@ -171,8 +171,9 @@ class MyLocale implements Translations {
       "needs_more_info": "بانتظار معلومات إضافية",
       "edit": "تعديل ",
       "update_info_title": "إضافة معلومات إضافية",
-      "save_changes_button": "حفظ التعديلات"
-
+      "save_changes_button": "حفظ التعديلات",
+  'update_complaint': 'تحديث الشكوى',
+  'save_changes': 'حفظ التغييرات',
     },
 
     // English
@@ -347,7 +348,9 @@ class MyLocale implements Translations {
       "needs_more_info": "Needs More Info",
       "edit": "Edit",
       "update_info_title": "Update Information",
-      "save_changes_button": "Save Changes"
+      "save_changes_button": "Save Changes",
+      'update_complaint': 'Update Complaint',
+      'save_changes': 'Save Changes',
     },
   };
 }
