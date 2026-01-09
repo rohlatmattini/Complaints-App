@@ -13,5 +13,6 @@ class AppRoute {
   static const String resetPassword = '/reset-password';
   static const String notifications = '/notifications';
   static const String complaintDetails = '/complaint_details';
+  static const String edit_complaint = '/edit_complaint';
 
 }

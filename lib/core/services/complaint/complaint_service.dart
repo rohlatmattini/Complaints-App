@@ -7,6 +7,7 @@ import '../../../data/models/complaint/complaint_meta_model.dart';
 import '../../constants/app_links.dart';
 import '../../localization/locale_controller.dart';
 import 'complaint_cache_service.dart';
+import 'package:path/path.dart' as path;
 
 class ComplaintService {
   final FlutterSecureStorage storage = const FlutterSecureStorage();
@@ -151,6 +152,88 @@ class ComplaintService {
       }
     } catch (e) {
       print("Multipart error: $e");
+      return null;
+    }
+  }
+  Future<Map<String, dynamic>?> replyToInfoRequest(
+      int complaintId,
+      String message,
+      List<File> attachments,
+      ) async {
+    try {
+      final token = await storage.read(key: 'token');
+
+      print('Replying to info request for complaint ID: $complaintId');
+      print('Message: $message');
+      print('Number of attachments: ${attachments.length}');
+
+      var request = http.MultipartRequest(
+        'POST',
+        Uri.parse('${AppLinks.baseUrl}/complaints/$complaintId/reply-info'),
+      );
+
+      request.headers['Authorization'] = 'Bearer $token';
+      request.headers['Accept'] = 'application/json';
+      request.headers['Accept-Language'] = langController.currentLangFromPref;
+
+      // إضافة الرسالة
+      if (message.isNotEmpty) {
+        request.fields['message'] = message;
+      }
+
+      // إضافة المرفقات
+      for (int i = 0; i < attachments.length; i++) {
+        final file = attachments[i];
+        final fileName = path.basename(file.path);
+        final fileExtension = fileName.split('.').last.toLowerCase();
+
+        // تحديد نوع الملف
+        String mimeType = 'application/octet-stream';
+        if (fileExtension == 'jpg' || fileExtension == 'jpeg') {
+          mimeType = 'image/jpeg';
+        } else if (fileExtension == 'png') {
+          mimeType = 'image/png';
+        } else if (fileExtension == 'pdf') {
+          mimeType = 'application/pdf';
+        } else if (fileExtension == 'doc') {
+          mimeType = 'application/msword';
+        } else if (fileExtension == 'docx') {
+          mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+        } else if (fileExtension == 'txt') {
+          mimeType = 'text/plain';
+        }
+
+        final fileStream = http.ByteStream(file.openRead());
+        final length = await file.length();
+
+        final multipartFile = http.MultipartFile(
+          'attachments[]',
+          fileStream,
+          length,
+          filename: fileName,
+          contentType: http.MediaType.parse(mimeType),
+        );
+
+        request.files.add(multipartFile);
+      }
+
+      final streamed = await request.send();
+      final response = await http.Response.fromStream(streamed);
+
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final responseData = json.decode(response.body);
+        print('Successfully submitted additional information');
+        return responseData;
+      } else {
+        print('Error submitting information: ${response.statusCode}');
+        print('Error response: ${response.body}');
+        return null;
+      }
+    } catch (e) {
+      print('Error in replyToInfoRequest: $e');
       return null;
     }
   }

@@ -174,6 +174,12 @@ class MyLocale implements Translations {
       "save_changes_button": "حفظ التعديلات",
   'update_complaint': 'تحديث الشكوى',
   'save_changes': 'حفظ التغييرات',
+      "Your Response Message": "رسالة الرد الخاصة بك",
+      "Please provide the requested information here...": "يرجى تقديم المعلومات المطلوبة هنا...",
+      "Please provide all requested information clearly": "يرجى تقديم جميع المعلومات المطلوبة بوضوح",
+      "Message should be at least 10 characters": "يجب أن تكون الرسالة على الأقل 10 أحرف",
+      "Provide Additional Information":"كتابة معلومات اضافية",
+      "Submit Information":"ارسال التعديلات"
     },
 
     // English
@@ -351,6 +357,12 @@ class MyLocale implements Translations {
       "save_changes_button": "Save Changes",
       'update_complaint': 'Update Complaint',
       'save_changes': 'Save Changes',
+      "Your Response Message": "Your Response Message",
+      "Please provide the requested information here...": "Please provide the requested information here...",
+      "Please provide all requested information clearly": "Please provide all requested information clearly",
+      "Message should be at least 10 characters": "Message should be at least 10 characters",
+      "Provide Additional Information":"Provide Additional Information",
+      "Submit Information":"Submit Information",
     },
   };
 }

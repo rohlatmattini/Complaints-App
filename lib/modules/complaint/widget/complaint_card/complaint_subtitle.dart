@@ -60,7 +60,11 @@ class ComplaintSubtitle extends StatelessWidget {
                 onPressed: () {
                   final formController = Get.put(ComplaintFormController());
                   formController.loadComplaintToEdit(complaint);
-                  Get.toNamed(AppRoute.addNewComplaint);
+                  Get.toNamed(AppRoute.edit_complaint, arguments: {
+                    'id': complaint.id,
+                    'reference_number': complaint.referenceNumber,
+                    'title': complaint.title,
+                  });
                 },
                 icon: const Icon(Icons.edit, size: 16, color: AppColor.blue),
                 label: Text('edit'.tr, style: const TextStyle(color: AppColor.blue)),

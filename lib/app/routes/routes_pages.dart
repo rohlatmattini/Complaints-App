@@ -1,3 +1,4 @@
+import 'package:complaints/modules/complaint/view/complaint_info_reply_screen.dart';
 import 'package:get/get.dart';
 import '../../modules/auth/view/email_verification.dart';
 import '../../modules/auth/view/forgot_password.dart';
@@ -34,6 +35,8 @@ class AppPages {
     GetPage(name: AppRoute.forgotPassword, page: () => ForgotPasswordScreen()),
     GetPage(name: AppRoute.resetPassword, page: () => ResetPasswordScreen()),
     GetPage(name: AppRoute.notifications, page: () => NotificationsScreen()),
+    GetPage(name: AppRoute.edit_complaint, page: () => ComplaintInfoReplyScreen()),
+
     GetPage(
       name: AppRoute.complaintDetails,
       page: () => ComplaintDetailsScreen(
