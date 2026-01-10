@@ -67,8 +67,7 @@ class ComplaintDepartment {
 class ComplaintRegion {
   final int id;
   final String name;
-  // ملاحظة: الـ JSON لا يحتوي على is_active أو code
-  // ولكن قد يكونان null في بعض الحالات
+
 
   ComplaintRegion({
     required this.id,
@@ -86,7 +85,6 @@ class ComplaintRegion {
     return {
       'id': id,
       'name': name,
-      // لا نضيف حقول غير موجودة في الـ JSON الأصلي
     };
   }
 }

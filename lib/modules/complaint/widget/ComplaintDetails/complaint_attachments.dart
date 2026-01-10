@@ -132,11 +132,11 @@ class AttachmentsWidget extends StatelessWidget {
             children: [
               Icon(
                 _getFileIcon(attachment),
-                size: 40, // قللت الحجم
+                size: 40,
                 color: _getFileIconColor(attachment),
               ),
-              const SizedBox(height: 8), // قللت المسافة
-              Flexible( // أضفت Flexible هنا
+              const SizedBox(height: 8),
+              Flexible(
                 child: Text(
                   attachment.originalName,
                   maxLines: 2,

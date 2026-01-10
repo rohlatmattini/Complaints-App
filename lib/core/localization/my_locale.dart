@@ -179,7 +179,8 @@ class MyLocale implements Translations {
       "Please provide all requested information clearly": "يرجى تقديم جميع المعلومات المطلوبة بوضوح",
       "Message should be at least 10 characters": "يجب أن تكون الرسالة على الأقل 10 أحرف",
       "Provide Additional Information":"كتابة معلومات اضافية",
-      "Submit Information":"ارسال التعديلات"
+      "Submit Information":"ارسال التعديلات",
+      "Re-enter new password":"اعادة تعيين كلمة مرور"
     },
 
     // English
@@ -363,6 +364,7 @@ class MyLocale implements Translations {
       "Message should be at least 10 characters": "Message should be at least 10 characters",
       "Provide Additional Information":"Provide Additional Information",
       "Submit Information":"Submit Information",
+      "Re-enter new password":"Re-enter new password"
     },
   };
 }

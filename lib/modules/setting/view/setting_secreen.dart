@@ -34,7 +34,6 @@ class SettingScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
 
-            // Dark Mode مع Switch
             AppTile(
               icon: Icons.dark_mode_rounded,
               iconColor: isDark ? Colors.white : AppColor.blue,

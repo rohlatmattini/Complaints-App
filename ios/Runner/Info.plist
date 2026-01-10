@@ -2,6 +2,25 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+/////
+    <key>NSUserTrackingUsageDescription</key>
+    <string>نستخدم الإشعارات لإرسال تنبيهات مهمة للمستخدم.</string>
+
+    <key>FirebaseAppDelegateProxyEnabled</key>
+    <true/>
+    <key>NSCameraUsageDescription</key>
+    <string>نحتاج لاستخدام الكاميرا لالتقاط الصور.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>نحتاج للوصول إلى الصور في جهازك.</string>
+
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>نحتاج لإضافة الصور إلى مكتبة الصور.</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+/////
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

@@ -36,7 +36,6 @@ class ComplaintMetaCache {
     try {
       final Map<String, dynamic> json = jsonDecode(jsonString);
 
-      // التحقق من الحقول المطلوبة
       if (json['meta'] == null || json['cachedAt'] == null || json['cacheKey'] == null) {
         throw FormatException('Missing required fields in cache');
       }
@@ -52,10 +51,9 @@ class ComplaintMetaCache {
       throw FormatException('Invalid cache JSON: $e');
     }
   }
-  // التحقق من صلاحية الكاش (مدة صلاحية 24 ساعة)
   bool get isValid {
     final now = DateTime.now();
     final diff = now.difference(cachedAt);
-    return diff.inHours < 24; // صلاحية لمدة 24 ساعة
+    return diff.inHours < 24;
   }
 }

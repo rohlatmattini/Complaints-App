@@ -9,7 +9,7 @@ class ComplaintEvents {
 
   static void notify(ComplaintEventType event) {
     complaintStream.value = ComplaintEventType.none;
-    complaintStream.refresh(); // مهم
+    complaintStream.refresh();
     complaintStream.value = event;
   }
 

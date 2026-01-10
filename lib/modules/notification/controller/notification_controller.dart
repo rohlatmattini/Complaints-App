@@ -24,12 +24,7 @@ class NotificationController extends GetxController {
     fetchNotifications();
   }
 
-  // /// جلب الإشعارات
-  // Future<void> fetchNotifications() async {
-  //   await _notificationService.fetchNotifications(
-  //     status: showUnreadOnly.value ? 'unread' : null,
-  //   );
-  // }
+
 
   Future<void> fetchNotifications() async {
     await _notificationService.fetchNotifications(

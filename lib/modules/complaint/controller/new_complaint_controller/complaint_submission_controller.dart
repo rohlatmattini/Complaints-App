@@ -25,10 +25,8 @@ class ComplaintSubmissionController extends GetxController {
       return;
     }
 
-    // Prepare form data
     _prepareFormData();
 
-    // Validate required fields
     if (formController.complaint.value.complaintType.isEmpty ||
         formController.complaint.value.responsibleEntity.isEmpty) {
       Get.snackbar('Error'.tr, 'Please fill all required fields'.tr);
@@ -38,12 +36,10 @@ class ComplaintSubmissionController extends GetxController {
     try {
       isLoading.value = true;
 
-      // Prepare complaint data for API
       final complaintData = _prepareApiData();
 
       print("Sending data: $complaintData");
 
-      // Submit to API
       final response = await _complaintService.submitComplaintMultipart(
         complaintData,
         attachmentController.attachedFiles,
@@ -91,7 +87,6 @@ class ComplaintSubmissionController extends GetxController {
   int? _getCategoryIdFromLabel(String label) {
     try {
 
-      // البحث في القائمة
       final category = metaController.categories.firstWhere((cat) => cat.label == label);
       return category.id;
     } catch (e) {
@@ -103,7 +98,6 @@ class ComplaintSubmissionController extends GetxController {
   int? _getDepartmentIdFromLabel(String name) {
     try {
 
-      // البحث في القائمة
       final department = metaController.departments.firstWhere((dept) => dept.name == name);
       return department.id;
     } catch (e) {

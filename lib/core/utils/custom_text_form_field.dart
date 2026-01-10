@@ -46,12 +46,10 @@ class CustomTextFormField extends StatelessWidget {
         labelText: label,
         hintText: hint,
 
-        // ✅ لون الـ label
         labelStyle: TextStyle(
           color: isDark ? Colors.white70 : Colors.black54,
         ),
 
-        // ✅ لون الـ hint
         hintStyle: TextStyle(
           color: isDark ? Colors.white54 : Colors.black26,
         ),

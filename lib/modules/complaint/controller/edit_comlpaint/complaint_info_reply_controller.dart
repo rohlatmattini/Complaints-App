@@ -58,11 +58,9 @@ class ComplaintInfoReplyController extends GetxController {
           colorText: Colors.white,
         );
 
-        // إعادة تعيين النموذج
         messageController.clear();
         attachmentController.clearFiles();
 
-        // العودة للخلف بعد تأخير بسيط
         await Future.delayed(Duration(milliseconds: 1500));
         Get.back(result: true);
       } else {

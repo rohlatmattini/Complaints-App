@@ -138,7 +138,6 @@ class ComplaintFormController extends GetxController {
     selectedPriority.value = 'medium';
     selectedRegion.value = '';
 
- //   Get.snackbar('Form Cleared'.tr, 'All fields have been cleared'.tr);
   }
 
   static String _generateReferenceNumber() {

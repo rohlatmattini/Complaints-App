@@ -43,7 +43,7 @@ class ResponsibleEntityDropdown extends StatelessWidget {
           ),
           filled: true,
           fillColor: isDark
-              ? AppColor.getCardColor(isDark: true) // نفس لون الكارد الداكن
+              ? AppColor.getCardColor(isDark: true)
               : Colors.white,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.r),

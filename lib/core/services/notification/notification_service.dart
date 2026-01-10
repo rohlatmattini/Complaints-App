@@ -15,7 +15,6 @@ class NotificationService extends GetxService {
   late SharedPreferences _prefs;
   final String _tokenKey = 'fcm_token_sent';
 
-  // متغيرات تفاعلية للإشعارات
   var notifications = <NotificationModel>[].obs;
   var unreadCount = 0.obs;
   var isLoading = false.obs;
@@ -30,7 +29,6 @@ class NotificationService extends GetxService {
     await loadUnreadCount();
     await fetchNotifications();
     onNewNotificationReceived();
-    //////
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print('📩 إشعار جديد (Foreground)');
 
@@ -41,13 +39,12 @@ class NotificationService extends GetxService {
   Future<void> init() async {
     try {
       _prefs = await SharedPreferences.getInstance();
-      await setupFCM(); // تم تغيير الاسم من _setupFCM إلى setupFCM
+      await setupFCM();
     } catch (e) {
       print('خطأ في تهيئة NotificationService: $e');
     }
   }
 
-  // تم تغيير الاسم من _setupFCM إلى setupFCM
   Future<void> setupFCM() async {
     try {
       // طلب الإذن
@@ -59,18 +56,16 @@ class NotificationService extends GetxService {
 
       print('إذن الإشعارات: ${settings.authorizationStatus}');
 
-      // الحصول على التوكن
       String? token = await _firebaseMessaging.getToken();
       print('FCM Token: $token');
 
       if (token != null) {
-        await sendTokenToServer(token); // تم تغيير الاسم
+        await sendTokenToServer(token);
       }
 
-      // استماع لتحديثات التوكن
       _firebaseMessaging.onTokenRefresh.listen((newToken) {
         print('تم تحديث التوكن: $newToken');
-        sendTokenToServer(newToken); // تم تغيير الاسم
+        sendTokenToServer(newToken);
       });
 
     } catch (e) {
@@ -78,17 +73,14 @@ class NotificationService extends GetxService {
     }
   }
 
-  // تم تغيير الاسم من _sendTokenToServer إلى sendTokenToServer
   Future<void> sendTokenToServer(String token) async {
     try {
-      // التحقق إذا تم إرسال التوكن مسبقاً
       String? lastSentToken = _prefs.getString(_tokenKey);
       if (lastSentToken == token) {
         print('التوكن تم إرساله مسبقاً');
         return;
       }
 
-      // الحصول على توكن المستخدم من Secure Storage
       String? userToken = await _secureStorage.read(key: 'token');
 
       print('User Token from secure storage: ${userToken != null ? "Exists" : "Not found"}');
@@ -118,7 +110,6 @@ class NotificationService extends GetxService {
       print('📡 محتوى الاستجابة: ${response.body}');
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        // حفظ التوكن بعد الإرسال الناجح
         await _prefs.setString(_tokenKey, token);
         await _prefs.remove('pending_fcm_token');
         print('✅ تم تسجيل التوكن بنجاح');
@@ -130,24 +121,21 @@ class NotificationService extends GetxService {
     }
   }
 
-  // دالة لمعالجة التوكن المعلق بعد تسجيل الدخول
   Future<void> sendPendingToken() async {
     String? pendingToken = _prefs.getString('pending_fcm_token');
     if (pendingToken != null) {
       print('🔄 إرسال التوكن المعلق: $pendingToken');
-      await sendTokenToServer(pendingToken); // تم تغيير الاسم
+      await sendTokenToServer(pendingToken);
     } else {
       print('ℹ️ لا يوجد توكن معلق لإرساله');
     }
   }
 
-  // ==================== الـ APIs الجديدة ====================
 
-  /// 1. جلب جميع الإشعارات مع pagination
   Future<List<NotificationModel>> fetchNotifications({
     int page = 1,
     int perPage = 10,
-    String? status, // 'read' أو 'unread'
+    String? status,
   }) async {
     try {
       isLoading.value = true;
@@ -155,7 +143,6 @@ class NotificationService extends GetxService {
       String? userToken = await _secureStorage.read(key: 'token');
       if (userToken == null) return [];
 
-      // بناء الرابط مع query parameters
       Uri uri = Uri.parse('${AppLinks.baseUrl}/notifications').replace(
         queryParameters: {
           'page': page.toString(),
@@ -177,11 +164,9 @@ class NotificationService extends GetxService {
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
 
-        // تحديث بيانات الـ pagination
         currentPage.value = data['meta']['current_page'];
         totalPages.value = data['meta']['last_page'];
 
-        // تحويل البيانات إلى نموذج
         List<NotificationModel> fetchedNotifications = [];
         for (var item in data['data']) {
           fetchedNotifications.add(NotificationModel.fromJson(item));
@@ -202,7 +187,6 @@ class NotificationService extends GetxService {
     }
   }
 
-  /// 2. جلب عدد الإشعارات غير المقروءة
   Future<int> loadUnreadCount() async {
     try {
       String? userToken = await _secureStorage.read(key: 'token');
@@ -233,7 +217,6 @@ class NotificationService extends GetxService {
     }
   }
 
-  /// 3. تعليم جميع الإشعارات كمقروءة
   Future<bool> markAllAsRead() async {
     try {
       String? userToken = await _secureStorage.read(key: 'token');
@@ -252,10 +235,8 @@ class NotificationService extends GetxService {
         final data = json.decode(response.body);
         print('✅ ${data['message']}');
 
-        // تحديث العد المحلي
         unreadCount.value = 0;
 
-        // تحديث حالة الإشعارات المحلية
         for (var notification in notifications) {
           notification.isRead = true;
         }
@@ -272,23 +253,18 @@ class NotificationService extends GetxService {
     }
   }
 
-  /// 4. تحديث العد تلقائيًا عند استلام إشعار جديد
   void onNewNotificationReceived() {
-    // تحديث العد
     loadUnreadCount();
 
-    // إعادة جلب الإشعارات
     fetchNotifications();
   }
 
-  /// 5. جلب الصفحة التالية (pagination)
   Future<void> loadNextPage() async {
     if (currentPage.value < totalPages.value) {
       await fetchNotifications(page: currentPage.value + 1);
     }
   }
 
-  /// 6. جلب الصفحة السابقة (pagination)
   Future<void> loadPreviousPage() async {
     if (currentPage.value > 1) {
       await fetchNotifications(page: currentPage.value - 1);
@@ -296,17 +272,14 @@ class NotificationService extends GetxService {
   }
 
   Future<void> logout() async {
-    // إزالة التوكن عند تسجيل الخروج
     await _prefs.remove(_tokenKey);
     await _prefs.remove('pending_fcm_token');
     await _secureStorage.delete(key: 'token');
 
-    // مسح الإشعارات المحلية
     notifications.clear();
     unreadCount.value = 0;
   }
 
-  // تعليم إشعار واحد كمقروء
   Future<bool> markAsRead(int notificationId) async {
     try {
       String? userToken = await _secureStorage.read(key: 'token');
@@ -322,14 +295,12 @@ class NotificationService extends GetxService {
       );
 
       if (response.statusCode == 200) {
-        // تحديث الإشعار المحلي
         final index = notifications.indexWhere((n) => n.id == notificationId);
         if (index != -1) {
           notifications[index].isRead = true;
           notifications.refresh();
         }
 
-        // تحديث العد المحلي
         await loadUnreadCount();
 
         print('✅ تم تعليم الإشعار $notificationId كمقروء');
@@ -346,20 +317,16 @@ class NotificationService extends GetxService {
 
   void handleIncomingNotification(RemoteMessage message) {
     try {
-      // إذا كان السيرفر يرجع ID بالإشعار
       final data = message.data;
 
       if (data.isNotEmpty) {
         final newNotification = NotificationModel.fromJson(data);
 
-        // 🔥 إضافة الإشعار مباشرة أول القائمة
         notifications.insert(0, newNotification);
         notifications.refresh();
 
-        // تحديث العدّاد
         unreadCount.value++;
       } else {
-        // fallback: إذا ما في data
         loadUnreadCount();
         fetchNotifications();
       }

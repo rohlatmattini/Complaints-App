@@ -45,7 +45,6 @@ class AppColor {
   static Color getStatusColor(String status, {bool isDark = false}) {
     final statusLower = status.toLowerCase().trim();
 
-    // التعامل مع النصوص العربية والإنجليزية
     if (statusLower.contains('تحت المعالجة') || statusLower.contains('in progress')) {
       return isDark ? darkOrange : orange;
     } else if (statusLower.contains('مفتوحة') || statusLower.contains('open')) {
@@ -60,7 +59,7 @@ class AppColor {
     else if (statusLower.contains('مغلقة') || statusLower.contains('closed')) {
       return isDark ? darkOrange : orange;
     }
-    else if (statusLower.contains('طلب معلومات') ||
+    else if (statusLower.contains('بانتظار معلومات إضافية') ||
         statusLower.contains('needs_more_info') ||
         statusLower.contains('need more info')) {
       return isDark ? AppColor.blue :AppColor.blue;

@@ -17,7 +17,7 @@ class ComplaintDetailsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  SizedBox(
-      width: MediaQuery.of(context).size.width, // عرض الشاشة بالكامل
+      width: MediaQuery.of(context).size.width,
       child: Card(
         elevation: 2,
         color: AppColor.getCardColor(isDark: isDark),

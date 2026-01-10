@@ -176,12 +176,10 @@ class ComplaintService {
       request.headers['Accept'] = 'application/json';
       request.headers['Accept-Language'] = langController.currentLangFromPref;
 
-      // إضافة الرسالة
       if (message.isNotEmpty) {
         request.fields['message'] = message;
       }
 
-      // إضافة المرفقات
       for (int i = 0; i < attachments.length; i++) {
         final file = attachments[i];
         final fileName = path.basename(file.path);

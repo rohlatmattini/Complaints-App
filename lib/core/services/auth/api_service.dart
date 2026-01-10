@@ -34,7 +34,6 @@ class ApiService {
 
       final data = jsonDecode(response.body);
 
-      // استخراج التوكن بشكل آمن
       final token = data['data']?['token'];
 
       if (token != null) {
@@ -188,7 +187,6 @@ class ApiService {
   }
 
 
-  // في ملف ApiService.dart
   Future<Map<String, dynamic>?> logout(String token) async {
     final uri = Uri.parse('${AppLinks.baseUrl}/logout');
 

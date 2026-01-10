@@ -131,8 +131,5 @@ class MainDrawer extends StatelessWidget {
     );
   }
 
-  // void _performLogout() {
-  //   Get.find<UserController>().clearUser();
-  //   Get.offAllNamed('/login');
-  // }
+
 }

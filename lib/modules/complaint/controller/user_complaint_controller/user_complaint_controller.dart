@@ -12,7 +12,7 @@ import '../../complaint_event_bus.dart';
 
 class UserComplaintController extends GetxController {
   final UserComplaintService _complaintService = UserComplaintService();
-  final MyLocaleController _localeController = Get.find(); // الحصول على controller اللغة
+  final MyLocaleController _localeController = Get.find();
 
   // State variables
   var complaints = <UserComplaint>[].obs;
@@ -40,7 +40,6 @@ class UserComplaintController extends GetxController {
 
   void _subscribeToLanguageChanges() {
     ever(_localeController.currentLang, (String newLang) {
-      // عند تغيير اللغة، إعادة تحميل البيانات تلقائيًا
       refreshComplaints();
     });
   }
@@ -62,7 +61,6 @@ class UserComplaintController extends GetxController {
       case ComplaintEventType.newComplaint:
       case ComplaintEventType.statusUpdated:
       case ComplaintEventType.refreshAll:
-      // إعادة تحميل البيانات مع الحفاظ على الفلاتر
         refreshComplaints();
         break;
       case ComplaintEventType.none:
@@ -144,7 +142,6 @@ class UserComplaintController extends GetxController {
   List<UserComplaint> get filteredComplaints {
     var filtered = complaints.toList();
 
-    // Apply search filter
     if (searchQuery.isNotEmpty) {
       filtered = filtered.where((complaint) =>
       complaint.title.toLowerCase().contains(searchQuery.toLowerCase()) ||
@@ -155,7 +152,6 @@ class UserComplaintController extends GetxController {
           .toList();
     }
 
-    // Apply status filter
     if (statusFilter.value != null) {
       filtered = filtered.where((complaint) =>
       ComplaintTextHelper.normalizeStatus(complaint.status) == statusFilter.value
@@ -163,7 +159,6 @@ class UserComplaintController extends GetxController {
     }
 
 
-    // Apply priority filter
     if (priorityFilter.value != null) {
       filtered = filtered.where((complaint) =>
       complaint.priority == priorityFilter.value).toList();
@@ -177,12 +172,10 @@ class UserComplaintController extends GetxController {
 
 
   Future<UserComplaint?> getOrLoadComplaint(int id) async {
-    // 1. جرّب من القائمة
     final existing =
     complaints.firstWhereOrNull((c) => c.id == id);
     if (existing != null) return existing;
 
-    // 2. إن لم توجد → حمّلها من السيرفر
     final complaint = await loadComplaintDetails(id);
     return complaint;
   }
