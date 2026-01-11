@@ -170,6 +170,7 @@ class NotificationModel {
     return body;
   }
 
+  // ✅ إضافة getter لـ displayBody
   String get displayBody => getDisplayBody();
 
   String get displayTitle {
@@ -190,9 +191,11 @@ class NotificationModel {
   String getFullNotificationText() {
     StringBuffer fullText = StringBuffer();
 
+    // العنوان المترجم
     fullText.writeln(displayTitle);
     fullText.writeln();
 
+    // معلومات الشكوى إذا كانت موجودة
     if (complaintId != null) {
       fullText.writeln('اسم الشكوى: ${getComplaintTitle()}');
 
@@ -205,6 +208,7 @@ class NotificationModel {
       fullText.writeln();
     }
 
+    // ✅ تصحيح: استخدام displayBody getter بدلاً من displayBody مباشرة
     fullText.writeln(displayBody);
 
     return fullText.toString();
@@ -214,8 +218,10 @@ class NotificationModel {
     String summary = '';
 
     if (complaintId != null) {
+      // ✅ تصحيح: استخدام displayBody getter
       summary = '${getComplaintTitle()}: ${displayBody}';
     } else {
+      // ✅ تصحيح: استخدام displayBody getter
       summary = displayBody;
     }
 
